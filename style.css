@@ -483,7 +483,11 @@ overflow: hidden;
   .card-grid, .grid-3-2 { grid-template-columns: 1fr; }
   .engagement-grid{
   grid-template-columns: repeat(2, 1fr); /* 2×2 layout */
-  gap: 20px; /* optional */
+   display: grid;
+  gap: 24px;
+  margin-bottom: 80px;
+}
+
 }
 }
 
@@ -491,4 +495,5 @@ overflow: hidden;
 .nav-links a.nav-tab:focus { outline: 3px solid rgba(59,130,246,0.18); outline-offset: 2px; }
 
 /* End of file */
+
 
