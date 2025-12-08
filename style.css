@@ -480,10 +480,15 @@ overflow: hidden;
   .subsection-title { font-size: 22px; }
   .ioc-grid { grid-template-columns: 1fr; }
   .ioc-grid .card-media img, .ioc-grid .card-media video { height: 220px; }
-  .card-grid, .grid-3-2, .engagement-grid { grid-template-columns: 1fr; }
+  .card-grid, .grid-3-2 { grid-template-columns: 1fr; }
+  .engagement-grid{
+  grid-template-columns: repeat(2, 1fr); /* 2×2 layout */
+  gap: 20px; /* optional */
+}
 }
 
 /* small helper adjustments */
 .nav-links a.nav-tab:focus { outline: 3px solid rgba(59,130,246,0.18); outline-offset: 2px; }
 
 /* End of file */
+
