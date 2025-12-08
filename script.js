@@ -171,8 +171,6 @@ mediaBlocks.forEach((block) => {
 
     // Clone ONLY the image
     const clone = img.cloneNode(true);
-    clone.style.width = '100%';
-    clone.style.height = 'auto';
 
     lightboxInner.appendChild(clone);
 
