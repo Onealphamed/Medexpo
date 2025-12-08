@@ -129,6 +129,86 @@ document.addEventListener('DOMContentLoaded', function () {
   }
 });
 
+ /* ---------- ZOOM / LIGHTBOX FOR IMAGES ONLY ---------- */
+
+const lightbox = document.getElementById('mediaLightbox');
+const lightboxInner = lightbox ? lightbox.querySelector('.lightbox-inner') : null;
+const lightboxClose = lightbox ? lightbox.querySelector('.lightbox-close') : null;
+
+// 1) Add zoom buttons only to images (NOT videos)
+const mediaBlocks = document.querySelectorAll('.card-media');
+
+mediaBlocks.forEach((block) => {
+
+  // ⭐ Select ONLY images inside card-media
+  const img = block.querySelector('img');
+  const video = block.querySelector('video');
+
+  // If this block contains a video → SKIP
+  if (video && !img) return;
+
+  // If no image inside → skip
+  if (!img) return;
+
+  // Avoid duplicating zoom button
+  if (block.querySelector('.zoom-btn')) return;
+
+  // Create the zoom button
+  const zoomBtn = document.createElement('button');
+  zoomBtn.type = 'button';
+  zoomBtn.className = 'zoom-btn';
+  zoomBtn.setAttribute('aria-label', 'View larger');
+  zoomBtn.innerHTML = '⛶';
+
+  block.appendChild(zoomBtn);
+
+  zoomBtn.addEventListener('click', (e) => {
+    e.stopPropagation();
+    if (!lightbox || !lightboxInner) return;
+
+    // Clear previous content
+    lightboxInner.innerHTML = '';
+
+    // Clone ONLY the image
+    const clone = img.cloneNode(true);
+    clone.style.width = '100%';
+    clone.style.height = 'auto';
+
+    lightboxInner.appendChild(clone);
+
+    lightbox.classList.add('open');
+    lightbox.setAttribute('aria-hidden', 'false');
+    document.body.style.overflow = 'hidden';
+  });
+});
+
+// 2) Lightbox close interactions
+
+function closeLightbox() {
+  if (!lightbox) return;
+  lightbox.classList.remove('open');
+  lightbox.setAttribute('aria-hidden', 'true');
+  document.body.style.overflow = '';
+  if (lightboxInner) {
+    lightboxInner.innerHTML = '';
+  }
+}
+
+if (lightboxClose) {
+  lightboxClose.addEventListener('click', closeLightbox);
+}
+
+if (lightbox) {
+  lightbox.addEventListener('click', (e) => {
+    if (e.target === lightbox) closeLightbox();
+  });
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape' && lightbox.classList.contains('open')) {
+    closeLightbox();
+  }
+});
 
 
 
