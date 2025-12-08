@@ -430,6 +430,15 @@ overflow: hidden;
   border-radius: 16px 16px 0 0;
 }
 
+/* Engagement page: enforce 5:4 video/image ratio */
+.engagement-grid .card-media img,
+.engagement-grid .card-media video {
+  height: auto;              /* override fixed 220px */
+  aspect-ratio: 5 / 4;       /* 5:4 format */
+  object-fit: cover;         /* keep a nice crop */
+}
+
+
 .card-info {
   padding: 16px;
   text-align: left;
@@ -499,6 +508,7 @@ overflow: hidden;
 .nav-links a.nav-tab:focus { outline: 3px solid rgba(59,130,246,0.18); outline-offset: 2px; }
 
 /* End of file */
+
 
 
 
