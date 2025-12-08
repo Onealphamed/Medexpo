@@ -91,6 +91,25 @@ body {
   object-fit: contain;
 }
 
+/* Default state: at top – show white, hide black */
+.nav-logo .logo-white {
+  display: block;
+}
+
+.nav-logo .logo-black {
+  display: none;
+}
+
+/* When nav is scrolled – swap logos */
+.nav-section.scrolled .logo-white {
+  display: none;
+}
+
+.nav-section.scrolled .logo-black {
+  display: block;
+}
+
+
 /* Tabs (desktop / default) */
 /* keep original uppercase, spacing and hover/active styles */
 .nav-links {
@@ -508,6 +527,7 @@ overflow: hidden;
 .nav-links a.nav-tab:focus { outline: 3px solid rgba(59,130,246,0.18); outline-offset: 2px; }
 
 /* End of file */
+
 
 
 
